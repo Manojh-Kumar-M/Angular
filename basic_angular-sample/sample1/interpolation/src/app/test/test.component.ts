@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   template: `
-  <h1 [style.color]="haserror?'red':'green'">style binding</h1>
-  <input  #myinput bind-disabled="did" [id]="myID" type="text" value="name"/>
-  <Button (click)="onclick($event)">Greet</Button>
+  <input [(ngModel)]="denName" type="text"/>
+  {{denName}}
+
   {{this.greeting}}`,
   styles: [`
     .text-success{
@@ -21,6 +22,7 @@ import { Component } from '@angular/core';
     }`]
 })
 export class TestComponent {
+public denName="";
 name ="vishwas";
 myID="VishwaParama";
 successclass= "text-success";
@@ -33,6 +35,7 @@ public messageClass={
   "text-danger":!this.haserror,
   "text-special":this.textSpecial
 }
+
 greet(){
   return "hello "+ this.greeting;
 }
